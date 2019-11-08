@@ -1,0 +1,29 @@
+.toolbar {
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+    //height: 30px;
+    background-color: #333333;
+    color: #c8c8c8;
+    padding: 0;
+    //height: 100%;
+    //width: 100%;
+
+
+    .contenerMenu{
+       // height: 100%;
+
+        .appLogo{
+            height: 60%;
+            padding-left: 7px;
+        }
+
+        .contenerAppTitle {
+            font-size: 10px;
+        }
+    }
+
+
+}
+
+
+

@@ -1,0 +1,41 @@
+<mat-toolbar class="toolbar" fxFill>
+
+        <div class="contenerMenu" fxLayout="row" fxLayoutAlign="space-between" fxFill>
+
+            <div fxLayout="column" fxLayoutAlign="center stretch">
+                <img class="appLogo"  src="../../../assets/icon/icon_transparent.png"/>
+            </div>
+            <div class="contenerAppTitle" fxLayout="column" fxLayoutAlign="center stretch">
+                Deeply Augment
+            </div>
+
+
+            <div fxLayout="column" fxLayoutAlign="center stretch" >
+                <div fxLayout="row" >
+                    <button mat-button (click)="reduceApp()">
+                        <i class="material-icons">minimize</i>
+
+                    </button>
+                    <button mat-button *ngIf="!isFullScreen()" (click)="maximizeApp()">
+                        <i class="material-icons">fullscreen</i>
+
+                    </button>
+                    <button mat-button *ngIf="isFullScreen()" (click)="unMaximizeApp()">
+                        <i class="material-icons">fullscreen_exit</i>
+
+                    </button>
+                    <button mat-button (click)="closeApp()">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+</mat-toolbar>

@@ -9,12 +9,9 @@
         <div fxLayout="column" fxLayoutAlign="center stretch" >
             <div fxLayout="row" fxFill class="contenerBtn" fxFill class="contenerLeftSide">
                 <img class="appLogo"  src="../../../assets/icon/icon_transparent.png"/>
-                <button fxFlex class="button" mat-button [matMenuTriggerFor]="menu">
-                    Menu
+                <button fxFlex [routerLink]="['']" class="button" mat-button >
+                    Accueil
                 </button>
-                <mat-menu #menu="matMenu">
-                    <button [routerLink]="['']" mat-menu-item>Accueil</button>
-                </mat-menu>
             </div>
         </div>
 

@@ -1,0 +1,21 @@
+
+
+<div>
+    <div>Inversion</div>
+    <mat-slide-toggle>Horizontal</mat-slide-toggle>
+    <mat-slide-toggle>Vertical</mat-slide-toggle>
+</div>
+
+<div>
+    <div>Flou Gaussien</div>
+
+        Minimal
+        <mat-slider [(ngModel)]="gaussianBlurValueMin" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
+        {{gaussianBlurValueMin}}
+        Maximal
+        <mat-slider [(ngModel)]="gaussianBlurValueMax" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
+        {{gaussianBlurValueMax}}
+
+
+
+</div>

@@ -31,7 +31,8 @@ import {ImageModule} from './image/image.module';
         WelcomeModule,
         SoundModule,
         ImageModule,
-        MatMenuModule
+        MatMenuModule,
+        NgxElectronModule
 
     ],
     providers: [],

@@ -1,13 +1,14 @@
 
 
 <div>
-    <div>Inversion</div>
+
+    <mat-slide-toggle>Inversion</mat-slide-toggle>
     <mat-slide-toggle>Horizontal</mat-slide-toggle>
     <mat-slide-toggle>Vertical</mat-slide-toggle>
 </div>
 
 <div>
-    <div>Flou Gaussien</div>
+    <mat-slide-toggle>Flou Gaussien</mat-slide-toggle>
 
         Minimal
         <mat-slider [(ngModel)]="gaussianBlurValueMin" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>

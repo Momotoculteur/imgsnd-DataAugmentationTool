@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatIconModule, MatInputModule, MatMenuModule, MatToolbarModule} from '@angular/material';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -31,9 +31,7 @@ import {ImageModule} from './image/image.module';
         WelcomeModule,
         SoundModule,
         ImageModule,
-        MatMenuModule,
-        NgxElectronModule
-
+        MatMenuModule
     ],
     providers: [],
     bootstrap: [AppComponent]

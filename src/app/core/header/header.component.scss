@@ -18,13 +18,18 @@
         }
 
         .contenerAppTitle {
-            font-size: 10px;
+            font-size: 11px;
+
+            span {
+                color: #2aa15f;
+            }
         }
 
         .contenerCenterBtn {
             //height: 100%;
             -webkit-app-region: no-drag;
             -webkit-user-select: all;
+
             .contenerBtn {
 
                 .button {
@@ -41,11 +46,13 @@
                 }
 
                 .hoverBtnRed:hover {
-                    background-color: red;
+                    background-color: rgba(255,0,0,0.6);
+                    color: white;
                 }
 
                 .hoverBtnWhite:hover {
-                    background-color: white;
+                    background-color: rgba(255,255,255,0.2);
+                    color: white;
                 }
 
 

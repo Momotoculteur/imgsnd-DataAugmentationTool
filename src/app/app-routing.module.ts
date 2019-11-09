@@ -13,9 +13,15 @@ const routes: Routes = [
     {
         path: 'welcome',
         loadChildren: './welcome/welcome.module#WelcomeModule'
+    },
+    {
+        path: 'sound',
+        loadChildren: './sound/sound.module#SoundModule'
+    },
+    {
+        path: 'image',
+        loadChildren: './image/image.module#ImageModule'
     }
-
-
 ];
 
 @NgModule({

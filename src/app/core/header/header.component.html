@@ -5,8 +5,17 @@
     <div class="contenerMenu" fxLayout="row" fxLayoutAlign="space-between" fxFill>
 
         <!--------------------   FLEX REGION COLUMN | LOGO   ------------------------>
-        <div fxLayout="column" fxLayoutAlign="center stretch">
-            <img class="appLogo"  src="../../../assets/icon/icon_transparent.png"/>
+
+        <div fxLayout="column" fxLayoutAlign="center stretch" >
+            <div fxLayout="row" fxFill class="contenerBtn" fxFill class="contenerLeftSide">
+                <img class="appLogo"  src="../../../assets/icon/icon_transparent.png"/>
+                <button fxFlex class="button" mat-button [matMenuTriggerFor]="menu">
+                    Menu
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button [routerLink]="['']" mat-menu-item>Accueil</button>
+                </mat-menu>
+            </div>
         </div>
 
         <!--------------------   FLEX REGION COLUMN | APP TITLE   ------------------------>

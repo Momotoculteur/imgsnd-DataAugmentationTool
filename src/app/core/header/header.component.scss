@@ -12,10 +12,32 @@
     .contenerMenu{
        // height: 100%;
 
-        .appLogo{
-            height: 60%;
-            padding-left: 7px;
+        .contenerLeftSide {
+            -webkit-app-region: no-drag;
+            -webkit-user-select: all;
+
+            .appLogo{
+                height: 60%;
+                //width: 60%;
+                padding-left: 7px;
+                padding-top: 5px;
+
+
+            }
+
+            .button {
+                padding: 0;
+                text-align: center;
+                line-height: 0;
+                border-radius: 0;
+            }
+
+            .button:hover {
+                background-color: rgba(255,255,255,0.2);
+                color: white;
+            }
         }
+
 
         .contenerAppTitle {
             font-size: 11px;
@@ -38,7 +60,7 @@
                     width: 40px;
                     padding: 0;
                     line-height: 0;
-                    z-index: 10;
+                    //z-index: 10;
 
                     .material-icons {
                         font-size: 20px;

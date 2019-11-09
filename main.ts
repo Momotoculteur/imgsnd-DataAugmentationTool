@@ -15,10 +15,15 @@ function createWindow() {
         },
         frame: false,
         titleBarStyle: 'hidden',
-        icon: './src/assets/icon/icon_transparent.png'
+        icon: './src/assets/icon/icon_transparent.png',
+        show: false
     });
 
     win.loadURL('http://localhost:4200/')
+
+    win.once('ready-to-show', () => {
+        win.show();
+    })
 
     if(isToolsDev) {
         win.webContents.openDevTools();
@@ -27,7 +32,9 @@ function createWindow() {
 }
 
 
-app.on('ready', createWindow)
+app.on('ready', createWindow);
+
+
 
 
 ipcMain.on('uiUpdateImageInfos', (event, pathFolder) => {

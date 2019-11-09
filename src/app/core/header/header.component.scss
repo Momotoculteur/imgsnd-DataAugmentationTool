@@ -20,6 +20,41 @@
         .contenerAppTitle {
             font-size: 10px;
         }
+
+        .contenerCenterBtn {
+            //height: 100%;
+            -webkit-app-region: no-drag;
+            -webkit-user-select: all;
+            .contenerBtn {
+
+                .button {
+                    border-radius: 0;
+                    min-width: 0;
+                    width: 40px;
+                    padding: 0;
+                    line-height: 0;
+                    z-index: 10;
+
+                    .material-icons {
+                        font-size: 20px;
+                    }
+                }
+
+                .hoverBtnRed:hover {
+                    background-color: red;
+                }
+
+                .hoverBtnWhite:hover {
+                    background-color: white;
+                }
+
+
+
+
+            }
+        }
+
+
     }
 
 

@@ -65,21 +65,52 @@ ipcMain.on('launchImgDataAug', (event, message) => {
 
                 Jimp.read(message['pathFolder'] + '\\' + file)
                     .then( img => {
-                        if (message.effects.blur.active) {
-                            console.log("BLUR ACTIVE");
-                            min = Math.ceil(message.effects.blur.minValue);
-                            max = Math.floor(message.effects.blur.maxValue);
-                            alea = Math.floor(Math.random() * (max - min + 1)) + min;
-                            img.blur(alea);
+
+
+                        for(let currentClone = 0 ; currentClone < message.cloneNumber ; currentClone++)
+                        {
+                            var currentImage = img.clone();
+
+                            let suffixeNameFile = '';
+                            if (message.effects.blur.active) {
+                                //let min = Math.ceil(message.effects.blur.minValue);
+                                //let max = Math.floor(message.effects.blur.maxValue);
+                                let alea = Math.floor(Math.random() * (message.effects.blur.maxValue - message.effects.blur.minValue + 1)) + message.effects.blur.minValue;
+                                console.log("BLUUUUR\n")
+                                console.log(alea)
+                                console.log("\n")
+                                if (alea !== 0) {
+                                    currentImage.blur(alea);
+                                }
+                                suffixeNameFile += '_blur';
+                            }
+                            if (message.effects.flip.active) {
+                                let v,h;
+                                if (message.effects.flip.vertical) {
+                                    v = trueOrFalseGenerator();
+                                } else {
+                                    v = false;
+                                }
+                                if (message.effects.flip.horizontal) {
+                                    h = trueOrFalseGenerator();
+                                } else {
+                                    h = false;
+                                }
+                                currentImage.flip(h, v);
+                                suffixeNameFile += '_flip';
+                            }
+
+                            suffixeNameFile += '_clone' + '_' + currentClone.toString();
+
+                            let currentNameFile = file.split('.');
+                            currentNameFile.pop();
+
+                            let savePath = message['pathFolder'] + '\\' + currentNameFile + suffixeNameFile + '.' + message.saveFormat;
+
+
+                            currentImage.write(savePath);
                         }
-                        if (message.effects.flip.active) {
-                            img.flip(message.effects.flip.horizontal, message.effects.flip.vertical);
-                        }
 
-                        //let savePath =
-
-
-                        img.write('test.png');
 
                     }).catch( (error) => {
                             console.log(error);
@@ -88,6 +119,16 @@ ipcMain.on('launchImgDataAug', (event, message) => {
         });
     });
 });
+
+
+function trueOrFalseGenerator() {
+    var random = Math.random();
+    if(random<0.5){
+        return false;
+    } else{
+        return true;
+    }
+}
 
 
 

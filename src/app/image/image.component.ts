@@ -58,8 +58,8 @@ export class ImageComponent implements OnInit {
         /***********   INIT EFFECTS   **********/
         this.gaussianBlurActive = false;
         this.gaussianBlurValueMin = 0;
-        this.gaussianBlurValueMax = 100;
-        this.gaussianBlurMax = 100;
+        this.gaussianBlurValueMax = 10;
+        this.gaussianBlurMax = 10;
         this.gaussianBlurMin = 0;
         this.gaussianBlurStep = 1;
 
@@ -102,6 +102,8 @@ export class ImageComponent implements OnInit {
     private launchDataAug() {
         let message = {
             'pathFolder': this.folderPath,
+            'cloneNumber': this.numberClone,
+            'saveFormat': this.saveFormat,
             'effects' : {
                 'blur': {
                     'active': this.gaussianBlurActive,

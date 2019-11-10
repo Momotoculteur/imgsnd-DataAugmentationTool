@@ -56,8 +56,16 @@
     }
 
     .infos {
+        margin: 10px;
+
+        .mat-button{
+            padding: 0;
+            width: 40px;
+            min-width: 0;
+        }
         .folderpath {
-            color: #ffd600;
+            //color: #ffd600;
+            vertical-align: center;
         }
     }
 }

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ImageRoutingModule } from './image-routing.module';
 import { ImageComponent } from '../image/image.component';
 import {
-    MatButtonModule,
+    MatButtonModule, MatDividerModule, MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -12,6 +12,7 @@ import {
     MatSlideToggleModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 @NgModule({
@@ -26,8 +27,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         MatFormFieldModule,
         MatButtonModule,
         MatSelectModule,
-        ReactiveFormsModule
-
+        ReactiveFormsModule,
+        MatDividerModule,
+        FlexLayoutModule
     ]
 })
 export class ImageModule { }

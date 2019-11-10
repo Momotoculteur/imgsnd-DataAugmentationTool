@@ -13,7 +13,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $DeeplyLabel-primary: mat-palette($mat-indigo);
-$DeeplyLabel-accent: mat-palette($mat-pink, A200, A100, A400);
+$DeeplyLabel-accent: mat-palette($mat-yellow, A700, A200, A400);
 
 // The warn palette is optional (defaults to red).
 $DeeplyLabel-warn: mat-palette($mat-red);
@@ -40,5 +40,19 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     background-color: #1e1e1e;
 }
+
+
+.mat-slide-toggle-bar {
+   // background-color: #c8c8c8 ;
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    //background-color: #2aa15f;
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    //background-color: #2aa15f;
+}
+
 
 

@@ -1,10 +1,12 @@
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
 const fs = require('fs');
+var Jimp = require('jimp');
 
 
 let win, isToolsDev;
 const args = process.argv.slice(1);
 isToolsDev = args.some(val => val === "--devTools");
+
 
 function createWindow() {
     win = new BrowserWindow({
@@ -38,10 +40,13 @@ app.on('ready', createWindow);
 
 
 ipcMain.on('uiUpdateImageInfos', (event, pathFolder) => {
-    console.log(pathFolder);
     fs.readdir(pathFolder.toString(), (err, files) => {
         event.reply('uiUpdateImageInfosResponse', files.length);
         console.log(files.length);
     });
-})
+});
+
+ipcMain.on('launchImgDataAug', (event, message) => {
+    console.log(message);
+});
 

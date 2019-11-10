@@ -1,3 +1,46 @@
 
-<app-effects></app-effects>
-<app-infos></app-infos>
+
+
+<div>
+
+    <mat-slide-toggle [(ngModel)]="flipActive">Inversion{{gaussianBlurActive}}</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="flipHorizontal" >Horizontal</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="flipVertical" >Vertical</mat-slide-toggle>
+</div>
+
+<div>
+    <mat-slide-toggle [(ngModel)]="gaussianBlurActive">Flou Gaussien</mat-slide-toggle>
+
+    Minimal
+    <mat-slider [(ngModel)]="gaussianBlurValueMin" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
+    {{gaussianBlurValueMin}}
+    Maximal
+    <mat-slider [(ngModel)]="gaussianBlurValueMax" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
+    {{gaussianBlurValueMax}}
+
+
+
+</div>
+
+<button mat-button (click)="selectFolderPath()">
+    <i class="material-icons">
+        folder_open
+    </i>
+</button>
+{{folderPath}}
+<br/>
+Nb clone par image
+<mat-form-field class="displayCloneNumber">
+    <input  matInput [(ngModel)]="numberClone" (ngModelChange)="updateNumberImg($event)">
+</mat-form-field>
+<br/>
+
+Nb image avant dataaug : {{numberImageBeforeAugmentation}}
+Nb total image apres dataaug {{numberImageAfterAugmentation}}
+
+
+<button mat-button (click)="launchDataAug()">
+    GO
+</button>
+
+

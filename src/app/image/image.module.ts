@@ -3,8 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { ImageRoutingModule } from './image-routing.module';
 import { ImageComponent } from '../image/image.component';
-import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSliderModule, MatSlideToggleModule} from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import {
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatSlideToggleModule
+} from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +24,9 @@ import {FormsModule} from '@angular/forms';
         FormsModule,
         MatInputModule,
         MatFormFieldModule,
-        MatButtonModule
+        MatButtonModule,
+        MatSelectModule,
+        ReactiveFormsModule
 
     ]
 })

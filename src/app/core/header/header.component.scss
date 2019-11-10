@@ -30,6 +30,12 @@
                 text-align: center;
                 line-height: 0;
                 border-radius: 0;
+                width: 30px;
+                min-width: 0;
+
+                .material-icons {
+                    font-size: 20px;
+                }
             }
 
             .button:hover {

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ElectronService} from 'ngx-electron';
+import {SaveFormatSelect} from '../../shared/interface/SaveFormatSelect';
+import {SaveFormat} from '../../shared/enum/SaveFormat';
 
 @Component({
   selector: 'app-image',
@@ -18,7 +20,8 @@ export class ImageComponent implements OnInit {
     private numberImageBeforeAugmentation: number;
     private numberClone: number;
     private numberImageAfterAugmentation: number;
-
+    private saveFormatList: SaveFormatSelect[];
+    private saveFormat: SaveFormat;
 
     /***********   EFFECTS   **********/
     private gaussianBlurActive: boolean;
@@ -35,6 +38,23 @@ export class ImageComponent implements OnInit {
 
     constructor() {
 
+
+        this.folderPath = "Aucun dossier sélectionné";
+        this.numberImageBeforeAugmentation = 0;
+        this.numberClone = 1;
+        this.saveFormatList = [
+            {value: '', viewValue: SaveFormat.PNG},
+            {value: '', viewValue: SaveFormat.JPEG},
+            {value: '', viewValue: SaveFormat.BPM},
+            {value: '', viewValue: SaveFormat.TIFF},
+            {value: '', viewValue: SaveFormat.GIF}
+        ];
+        this.saveFormat = SaveFormat.PNG;
+
+
+        this.electronService = new ElectronService();
+        this.numberImageAfterAugmentation = this.numberClone * this.numberImageBeforeAugmentation;
+
         /***********   INIT EFFECTS   **********/
         this.gaussianBlurActive = false;
         this.gaussianBlurValueMin = 0;
@@ -47,14 +67,6 @@ export class ImageComponent implements OnInit {
         this.flipHorizontal = false;
         this.flipVertical = false;
 
-
-        this.folderPath = "Aucun dossier sélectionné";
-        this.numberImageBeforeAugmentation = 0;
-        this.numberClone = 1;
-
-        this.electronService = new ElectronService();
-        this.numberImageAfterAugmentation = this.numberClone * this.numberImageBeforeAugmentation;
-
         this.initChannels();
     }
 
@@ -65,7 +77,7 @@ export class ImageComponent implements OnInit {
         this.electronService.remote.dialog.showOpenDialog(
             {properties: ['openDirectory']
             }).then( path => {
-            if (path.filePaths[0] != null) {
+            if (path.filePaths.length > 0) {
                 this.folderPath = path.filePaths[0];
                 this.electronService.ipcRenderer.send('uiUpdateImageInfos', this.folderPath);
             } else {
@@ -109,6 +121,7 @@ export class ImageComponent implements OnInit {
 
     private initChannels() {
         this.electronService.ipcRenderer.on('uiUpdateImageInfosResponse', (event, numberFiles) => {
+            console.log(numberFiles)
             this.numberImageBeforeAugmentation = numberFiles;
             this.updateNumberImgAfterAug();
         });

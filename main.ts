@@ -40,8 +40,9 @@ app.on('ready', createWindow);
 
 
 ipcMain.on('uiUpdateImageInfos', (event, pathFolder) => {
-    var i = 0;
+
     fs.readdir(pathFolder.toString(), (err, files) => {
+        let i = 0;
         files.forEach( (file) => {
             if ( (file.includes('.png'))
             || (file.includes('.jpg'))
@@ -49,14 +50,12 @@ ipcMain.on('uiUpdateImageInfos', (event, pathFolder) => {
                 i++;
             }
         });
+        event.reply('uiUpdateImageInfosResponse', i);
     });
-    event.reply('uiUpdateImageInfosResponse', i);
+
 });
 
 ipcMain.on('launchImgDataAug', (event, message) => {
-    console.log(message);
-
-
     fs.readdir(message['pathFolder'], (err, files) => {
         files.forEach( (file) => {
             if ( (file.includes('.png'))
@@ -76,6 +75,9 @@ ipcMain.on('launchImgDataAug', (event, message) => {
                         if (message.effects.flip.active) {
                             img.flip(message.effects.flip.horizontal, message.effects.flip.vertical);
                         }
+
+                        //let savePath =
+
 
                         img.write('test.png');
 

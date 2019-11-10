@@ -39,6 +39,14 @@ Nb image avant dataaug : {{numberImageBeforeAugmentation}}
 Nb total image apres dataaug {{numberImageAfterAugmentation}}
 
 
+<mat-form-field>
+<mat-select [(value)]="saveFormat">
+    <mat-option *ngFor="let format of saveFormatList" [value]="format.viewValue">
+        {{format.viewValue}}
+    </mat-option>
+</mat-select>
+</mat-form-field>
+
 <button mat-button (click)="launchDataAug()">
     GO
 </button>

@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
 const fs = require('fs');
 var Jimp = require('jimp');
-
+var path = require('path');
 
 let win, isToolsDev;
 const args = process.argv.slice(1);
@@ -41,8 +41,10 @@ app.on('ready', createWindow);
 
 ipcMain.on('uiUpdateImageInfos', (event, pathFolder) => {
     fs.readdir(pathFolder.toString(), (err, files) => {
-        event.reply('uiUpdateImageInfosResponse', files.length);
-        console.log(files.length);
+        //event.reply('uiUpdateImageInfosResponse', files.length);
+        files.filter(extension).forEach( (value) => {
+            console.log(value);
+        });
     });
 });
 
@@ -50,3 +52,9 @@ ipcMain.on('launchImgDataAug', (event, message) => {
     console.log(message);
 });
 
+
+
+function extension(element) {
+    var extName = path.extname(element);
+    return extName === '.txt' // change to whatever extensions you want
+};

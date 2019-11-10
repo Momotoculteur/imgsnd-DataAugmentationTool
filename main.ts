@@ -40,21 +40,55 @@ app.on('ready', createWindow);
 
 
 ipcMain.on('uiUpdateImageInfos', (event, pathFolder) => {
+    var i = 0;
     fs.readdir(pathFolder.toString(), (err, files) => {
-        //event.reply('uiUpdateImageInfosResponse', files.length);
-        files.filter(extension).forEach( (value) => {
-            console.log(value);
+        files.forEach( (file) => {
+            if ( (file.includes('.png'))
+            || (file.includes('.jpg'))
+            || (file.includes('.jpeg')) ) {
+                i++;
+            }
         });
     });
+    event.reply('uiUpdateImageInfosResponse', i);
 });
 
 ipcMain.on('launchImgDataAug', (event, message) => {
     console.log(message);
+
+
+    fs.readdir(message['pathFolder'], (err, files) => {
+        files.forEach( (file) => {
+            if ( (file.includes('.png'))
+                || (file.includes('.jpg'))
+                || (file.includes('.jpeg')) ) {
+                //pathImg = message['pathFolder'] + "\\" + file
+
+                Jimp.read(message['pathFolder'] + '\\' + file)
+                    .then( img => {
+                        if (message.effects.blur.active) {
+                            console.log("BLUR ACTIVE");
+                            min = Math.ceil(message.effects.blur.minValue);
+                            max = Math.floor(message.effects.blur.maxValue);
+                            alea = Math.floor(Math.random() * (max - min + 1)) + min;
+                            img.blur(alea);
+                        }
+                        if (message.effects.flip.active) {
+                            img.flip(message.effects.flip.horizontal, message.effects.flip.vertical);
+                        }
+
+                        img.write('test.png');
+
+                    }).catch( (error) => {
+                            console.log(error);
+                    });
+            };
+        });
+    });
 });
 
 
 
-function extension(element) {
-    var extName = path.extname(element);
-    return extName === '.txt' // change to whatever extensions you want
-};
+
+
+

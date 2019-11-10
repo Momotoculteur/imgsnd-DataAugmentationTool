@@ -1,0 +1,56 @@
+<!--------------------   TOOLBAR   ------------------------>
+<mat-toolbar class="toolbar" fxFill>
+
+    <!--------------------   FLEX REGION ROW   ------------------------>
+    <div class="contenerMenu" fxLayout="row" fxLayoutAlign="space-between" fxFill>
+
+        <!--------------------   FLEX REGION COLUMN | LOGO   ------------------------>
+
+        <div fxLayout="column" fxLayoutAlign="center stretch" >
+            <div fxLayout="row" fxFill class="contenerBtn" fxFill class="contenerLeftSide">
+                <img class="appLogo"  src="../../../assets/icon/icon_transparent.png"/>
+                <button fxFlex [routerLink]="['']" class="button" mat-button >
+                    <i class="material-icons">
+                        home
+                    </i>
+                </button>
+            </div>
+        </div>
+
+        <!--------------------   FLEX REGION COLUMN | APP TITLE   ------------------------>
+        <div class="contenerAppTitle" fxLayout="column" fxLayoutAlign="center stretch">
+            <div>
+                <span>D</span>eeply <span>A</span>ugment
+            </div>
+        </div>
+
+        <!--------------------   FLEX REGION COLUMN | TOOLBAR BUTTONS   ------------------------>
+        <div fxLayout="column" fxLayoutAlign="center stretch" class="contenerCenterBtn">
+
+            <!--------------------   FLEX REGION ROW | TOOLBAR BUTTONS   ------------------------>
+            <div fxLayout="row" fxFill class="contenerBtn" fxFill>
+
+                <!--------------------   FLEX REGION | BUTTON REDUCE   ------------------------>
+                <button fxFlex mat-button class="button hoverBtnWhite" (click)="reduceApp()">
+                    <i fxFlex class="material-icons">minimize</i>
+                </button>
+                <!--------------------   FLEX REGION | BUTTON MAXI   ------------------------>
+                <button fxFlex mat-button class="button hoverBtnWhite" *ngIf="!isFullScreen()" (click)="maximizeApp()">
+                    <i class="material-icons">fullscreen</i>
+               </button>
+                <!--------------------   FLEX REGION | BUTTON UNMAXI   ------------------------>
+                <button fxFlex mat-button class="button hoverBtnWhite" *ngIf="isFullScreen()" (click)="unMaximizeApp()">
+                    <i class="material-icons">fullscreen_exit</i>
+               </button>
+                <!--------------------   FLEX REGION | BUTTON CLOSE   ------------------------>
+                <button fxFlex mat-button class="button hoverBtnRed" (click)="closeApp()">
+                    <i class="material-icons">close</i>
+               </button>
+
+           </div>
+
+       </div>
+
+   </div>
+
+</mat-toolbar>

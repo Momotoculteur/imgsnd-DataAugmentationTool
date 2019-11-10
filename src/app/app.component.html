@@ -1,1 +1,12 @@
-<mat-toolbar class="menu">My App</mat-toolbar>
+<div fxLayout="column" fxLayoutAlign="space-between stretch" fxFill>
+    <div fxFlex="25px" class="header">
+        <app-header fxFlex></app-header>
+    </div>
+    <div fxFlex class="content">
+        <router-outlet fxFill></router-outlet>
+    </div>
+    <div fxFlex="20px" class="footer">
+        <app-footer fxFlex></app-footer>
+    </div>
+</div>
+

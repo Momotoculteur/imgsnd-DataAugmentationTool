@@ -1,0 +1,41 @@
+.contenerLabelnImg {
+
+    .mat-button {
+        padding: 0;
+        //width: 300px;
+        border-radius: 50px;
+        max-height: 70%;
+        max-width: 70%;
+    }
+
+    .description {
+        color: #c8c8c8;
+        font-size: 20px;
+    }
+    .description:first-letter {
+        color: #2aa15f
+    }
+
+
+}
+
+
+.contenerLabelnImg:hover {
+    .description {
+        color: white;
+        font-size: 20px;
+    }
+
+    .description:first-letter {
+        color: #2aa15f
+    }
+
+    .mat-button {
+        background-color: rgba(51,51,51,0.3);
+    }
+
+
+}
+
+
+

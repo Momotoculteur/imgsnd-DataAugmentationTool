@@ -1,0 +1,104 @@
+.toolbar {
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+    //height: 30px;
+    background-color: #333333;
+    color: #c8c8c8;
+    padding: 0;
+    //height: 100%;
+    //width: 100%;
+
+
+    .contenerMenu{
+       // height: 100%;
+
+        .contenerLeftSide {
+            -webkit-app-region: no-drag;
+            -webkit-user-select: all;
+
+            .appLogo{
+                height: 60%;
+                //width: 60%;
+                padding-left: 7px;
+                padding-top: 5px;
+
+
+            }
+
+            .button {
+                padding: 0;
+                text-align: center;
+                line-height: 0;
+                border-radius: 0;
+                width: 30px;
+                min-width: 0;
+
+                .material-icons {
+                    font-size: 20px;
+                }
+            }
+
+            .button:hover {
+                background-color: rgba(255,255,255,0.2);
+                color: white;
+            }
+
+
+
+
+
+
+
+        }
+
+
+        .contenerAppTitle {
+            font-size: 11px;
+
+            span {
+                color: #2aa15f;
+            }
+        }
+
+        .contenerCenterBtn {
+            //height: 100%;
+            -webkit-app-region: no-drag;
+            -webkit-user-select: all;
+
+            .contenerBtn {
+
+                .button {
+                    border-radius: 0;
+                    min-width: 0;
+                    width: 40px;
+                    padding: 0;
+                    line-height: 0;
+                    //z-index: 10;
+
+                    .material-icons {
+                        font-size: 20px;
+                    }
+                }
+
+                .hoverBtnRed:hover {
+                    background-color: rgba(255,0,0,0.6);
+                    color: white;
+                }
+
+                .hoverBtnWhite:hover {
+                    background-color: rgba(255,255,255,0.2);
+                    color: white;
+                }
+
+            }
+        }
+    }
+
+}
+
+
+.mat-menu-content {
+    color:red;
+}
+
+

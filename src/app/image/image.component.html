@@ -1,0 +1,101 @@
+
+<div class="contenerAll" fxFill>
+
+    <div fxLayout="column" fxLayoutAlign="space-between" fxFill>
+
+        <!-----------------------------------------   EFFETS ZONE   ------------------------------------------>
+        <div class="effects" fxFlex>
+
+            <div fxLayout="column">
+
+
+                <div class="superContenerFlip">
+                    <mat-slide-toggle [(ngModel)]="flipActive" class="subCategorieTitle">Symétrie</mat-slide-toggle>
+                        <div class="contenerFlip" *ngIf="flipActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
+                            <mat-slide-toggle [(ngModel)]="flipHorizontal" >Axe horizontal</mat-slide-toggle>
+                            <mat-slide-toggle [(ngModel)]="flipVertical" >Axe vertical</mat-slide-toggle>
+                        </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="superContenerBlur">
+                    <mat-slide-toggle [(ngModel)]="gaussianBlurActive" class="subCategorieTitle">Flou Gaussien</mat-slide-toggle>
+                        <div class="contenerBlur" *ngIf="gaussianBlurActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
+                            <div>
+                                Minimal
+                                <mat-slider [(ngModel)]="gaussianBlurValueMin" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
+                                {{gaussianBlurValueMin}}
+                            </div>
+                            <div>
+                                Maximal
+                                <mat-slider [(ngModel)]="gaussianBlurValueMax" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
+                                {{gaussianBlurValueMax}}
+                            </div>
+
+                        </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-----------------------------------------   END EFFETS ZONE   ------------------------------------------>
+
+
+
+        <!--<mat-divider></mat-divider>-->
+
+
+        <!-----------------------------------------   INFOS ZONE   ------------------------------------------>
+        <div class="infos" fxFlex>
+
+            <div fxLayout="column" fxLayoutAlign="end" fxFlex>
+
+                <div fxLayout="row">
+                    <button mat-button (click)="selectFolderPath()" >
+                        <i class="material-icons">
+                            folder_open
+                        </i>
+                    </button>
+                    <div class="folderpath" fxLayout="column" fxLayoutAlign="center">
+                        {{folderPath}}
+                    </div>
+                </div>
+
+
+                <div>
+                    <br/>
+                    Copies par image :
+                    <mat-form-field class="displayCloneNumber">
+                        <input  matInput [(ngModel)]="numberClone" (ngModelChange)="updateNumberImg($event)">
+                    </mat-form-field>
+                    <br/>
+
+                    Nb image avant dataaug : {{numberImageBeforeAugmentation}}
+                    Nb total image apres dataaug {{numberImageAfterAugmentation}}
+
+
+                    <mat-form-field>
+                        <mat-select [(value)]="saveFormat">
+                            <mat-option *ngFor="let format of saveFormatList" [value]="format.viewValue">
+                                {{format.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <button mat-button (click)="launchDataAug()">
+                        GO
+                    </button>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <!-----------------------------------------   END INFOS ZONE   ------------------------------------------>
+
+
+
+    </div>
+</div>

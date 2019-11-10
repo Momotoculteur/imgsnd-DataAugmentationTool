@@ -1,0 +1,72 @@
+.mat-slider {
+    padding: 0;
+    color: red
+}
+
+.displayCloneNumber {
+    max-width: 50px;
+}
+
+
+.contenerAll {
+
+    color: #c8c8c8;
+
+    .material-icons {
+        color: #ffd600;
+    }
+
+    .effects {
+        margin: 10px;
+
+
+
+        .mat-divider {
+            border-top-color: #c8c8c8;
+            opacity: 0.1;
+            //border-top-style: dashed;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .contenerFlip {
+            margin-left: 30px;
+            margin-top: 20px;
+            margin-right: 30px;
+            margin-bottom: 10px;
+        }
+
+        .contenerBlur {
+            margin-left: 30px;
+            margin-top: 5px;
+            margin-right: 30px;
+            //margin-bottom: 5px;
+        }
+
+
+
+        .subCategorieTitle {
+            font-size: 20px;
+            //font-weight: bold;
+            //color: #2aa15f;
+            color: #ffd600;
+        }
+
+
+    }
+
+    .infos {
+        margin: 10px;
+
+        .mat-button{
+            padding: 0;
+            width: 40px;
+            min-width: 0;
+        }
+        .folderpath {
+            //color: #ffd600;
+            vertical-align: center;
+        }
+    }
+}
+

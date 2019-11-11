@@ -100,25 +100,29 @@ export class ImageComponent implements OnInit {
     }
 
     private launchDataAug() {
-        let message = {
-            'pathFolder': this.folderPath,
-            'cloneNumber': this.numberClone,
-            'saveFormat': this.saveFormat,
-            'effects' : {
-                'blur': {
-                    'active': this.gaussianBlurActive,
-                    'minValue': this.gaussianBlurValueMin,
-                    'maxValue': this.gaussianBlurValueMax
-                },
-                'flip': {
-                    'active': this.flipActive,
-                    'horizontal': this.flipHorizontal,
-                    'vertical': this.flipVertical
+        if (this.folderPath === 'Aucun dossier sélectionné') {
+
+        } else {
+            let message = {
+                'pathFolder': this.folderPath,
+                'cloneNumber': this.numberClone,
+                'saveFormat': this.saveFormat,
+                'effects' : {
+                    'blur': {
+                        'active': this.gaussianBlurActive,
+                        'minValue': this.gaussianBlurValueMin,
+                        'maxValue': this.gaussianBlurValueMax
+                    },
+                    'flip': {
+                        'active': this.flipActive,
+                        'horizontal': this.flipHorizontal,
+                        'vertical': this.flipVertical
+                    }
                 }
-            }
+            };
+            console.log(this.gaussianBlurActive)
+            this.electronService.ipcRenderer.send('launchImgDataAug', message);
         }
-        console.log(this.gaussianBlurActive)
-        this.electronService.ipcRenderer.send('launchImgDataAug', message);
     }
 
     private initChannels() {

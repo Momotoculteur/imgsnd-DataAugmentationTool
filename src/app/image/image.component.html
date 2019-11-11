@@ -55,12 +55,12 @@
 
                 <!-----------------   PATH SELECTIONNER --------------->
                 <div fxLayout="column" fxFlexAlign="center" fxFlex>
-                    <button mat-button (click)="selectFolderPath()" fxFlexAlign="center">
+                    <button mat-button (click)="selectFolderPath()" fxFlexAlign="center" fxFlex>
                         <i class="material-icons">
                             folder_open
                         </i>
                     </button>
-                    <div fxLayoutAlign="center" class="infosText">
+                    <div fxLayoutAlign="center" class="infosText" fxFlex>
                         {{folderPath}}
                     </div>
                 </div>
@@ -117,11 +117,9 @@
 
                 <!-----------------   GO INFOS    --------------->
                 <div fxLayout="column" fxFlexAlign="center" fxFlex>
-                    <div fxLayout="row" fxLayoutAlign="center">
-                        <button mat-button (click)="launchDataAug()">
-                            GO
-                        </button>
-                    </div>
+                    <button mat-button (click)="launchDataAug()" class="goButton" fxFlexAlign="center">
+                        GO
+                    </button>
                 </div>
 
 

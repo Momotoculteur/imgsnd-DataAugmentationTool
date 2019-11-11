@@ -99,7 +99,19 @@
             padding-top: 20px;
             padding-bottom: 27px;
             color: #ffd600;
+            //white-space: pre-wrap !important;
         }
+
+        .goButton {
+            //width: 100px;
+            //font-size: 20px;
+        }
+
+        .goButton:hover {
+            color: #ffd600;
+        }
+
+
 
 
 

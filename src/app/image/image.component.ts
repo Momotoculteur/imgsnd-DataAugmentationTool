@@ -31,6 +31,9 @@ export class ImageComponent implements OnInit {
     private resizeLabelColorHeight: ThemeColor;
     private resizeLabelColorWidth: ThemeColor;
 
+    private resizeWidthLabelState: boolean;
+    private resizeHeightLabelState: boolean;
+
     /***********   EFFECTS   **********/
     private gaussianBlurActive: boolean;
     private gaussianBlurValueMin: number;
@@ -72,6 +75,9 @@ export class ImageComponent implements OnInit {
 
         this.resizeLabelColorHeight = ThemeColor.YELLOW;
         this.resizeLabelColorWidth = ThemeColor.YELLOW;
+
+        this.resizeWidthLabelState = false;
+        this.resizeHeightLabelState = false;
 
         this.electronService = new ElectronService();
         this.numberImageAfterAugmentation = this.numberClone * this.numberImageBeforeAugmentation;
@@ -160,6 +166,7 @@ export class ImageComponent implements OnInit {
         }
     }
 
+
     private initChannels() {
         this.electronService.ipcRenderer.on('uiUpdateImageInfosResponse', (event, numberFiles) => {
             console.log(numberFiles)
@@ -173,16 +180,23 @@ export class ImageComponent implements OnInit {
        this.heigthInputState = !this.heigthInputState;
        if (this.heigthInputState) {
            this.resizeLabelColorHeight = ThemeColor.BLACK;
+           this.resizeWidthLabelState = true;
        } else {
            this.resizeLabelColorHeight = ThemeColor.YELLOW;
+           this.resizeWidthLabelState = false;
+
        }
     }
+
+
     private switchWidthState() {
         this.widthInputState = !this.widthInputState;
         if (this.widthInputState) {
             this.resizeLabelColorWidth = ThemeColor.BLACK;
+            this.resizeHeightLabelState = true;
         } else {
             this.resizeLabelColorWidth = ThemeColor.YELLOW;
+            this.resizeHeightLabelState = false;
         }
     }
 

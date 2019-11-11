@@ -3,9 +3,10 @@ const fs = require('fs');
 var Jimp = require('jimp');
 var path = require('path');
 
-let win, isToolsDev;
+let win;
+let isToolsDev;
 const args = process.argv.slice(1);
-isToolsDev = args.some(val => val === "--devTools");
+isToolsDev = args.some(val => val === '--devTools');
 
 
 function createWindow() {
@@ -61,27 +62,31 @@ ipcMain.on('launchImgDataAug', (event, message) => {
             if ( (file.includes('.png'))
                 || (file.includes('.jpg'))
                 || (file.includes('.jpeg')) ) {
-                //pathImg = message['pathFolder'] + "\\" + file
+                // pathImg = message['pathFolder'] + "\\" + file
 
-                Jimp.read(message['pathFolder'] + '\\' + file)
+                Jimp.read(message.pathFolder + '\\' + file)
                     .then( img => {
 
 
-                        for(let currentImageIndex = 0 ; currentImageIndex < message.cloneNumber ; currentImageIndex++)
-                        {
-                            var currentImage = img.clone();
+                        for (let currentImageIndex = 0 ; currentImageIndex < message.cloneNumber ; currentImageIndex++) {
+                            let currentImage = img.clone();
 
                             let suffixeNameFile = '';
+
+                            /********************   BLUR EFFECT   *************/
                             if (message.effects.blur.active) {
-                                let alea = Math.floor(Math.random() * (message.effects.blur.maxValue - message.effects.blur.minValue + 1)) + message.effects.blur.minValue;
+                                const alea = Math.floor(Math.random() * (message.effects.blur.maxValue - message.effects.blur.minValue + 1)) + message.effects.blur.minValue;
 
                                 if (alea !== 0) {
                                     currentImage.blur(alea);
                                 }
                                 suffixeNameFile += '_blur';
                             }
+
+                            /********************   FLIP EFFECT   *************/
                             if (message.effects.flip.active) {
-                                let v,h;
+                                let v;
+                                let h;
                                 if (message.effects.flip.vertical) {
                                     v = trueOrFalseGenerator();
                                 } else {
@@ -94,6 +99,17 @@ ipcMain.on('launchImgDataAug', (event, message) => {
                                 }
                                 currentImage.flip(h, v);
                                 suffixeNameFile += '_flip';
+                            }
+
+                            /********************   RESIZE EFFECT   *************/
+                            if (message.effects.resize) {
+                                if (message.effects.resize.resizeHeigthAuto) {
+                                    currentImage.resize(message.effects.resize.width, Jimp.AUTO);
+                                } else if (message.effects.resize.resizeWidthAuto) {
+                                    currentImage.resize(Jimp.AUTO, message.effects.resize.height);
+                                } else {
+                                    currentImage.resize(message.effects.resize.width, message.effects.resize.height);
+                                }
                             }
 
                             // BETAAAAAAAAAAAAAAAAAAAAAAA
@@ -112,7 +128,7 @@ ipcMain.on('launchImgDataAug', (event, message) => {
                             currentNameFile.pop();
 
 
-                            let savePath = message['pathFolder'] + '\\' + currentNameFile + suffixeNameFile + '.' + message.saveFormat;
+                            let savePath = message.pathFolder + '\\' + currentNameFile + suffixeNameFile + '.' + message.saveFormat;
 
 
                             currentImage.write(savePath);

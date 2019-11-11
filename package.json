@@ -1,16 +1,24 @@
 {
-  "name": "deeply-label",
-  "version": "0.0.0",
-  "main": "main.ts",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "electron": "electron .",
-    "electron-serve": "npm run start | npm run electron"
+    "name": "Deeply Augment",
+    "author": "Bastien MAURICE <bastien_maurice@hortmail.com>",
+    "version": "0.0.0",
+    "main": "main.ts",
+    "description": "Outils permettant de réaliser de la data augmentation sur des images et des audios",
+    "build": {
+        "appId": "bmaurice",
+        "category": "data science"
+    },
+    "scripts": {
+        "ng": "ng",
+        "start": "ng serve",
+        "build": "ng build",
+        "test": "ng test",
+        "lint": "ng lint",
+        "e2e": "ng e2e",
+        "electron": "electron .",
+        "electron-serve": "npm run start | npm run electron",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder"
   },
   "private": true,
   "dependencies": {

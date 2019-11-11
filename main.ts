@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
 const fs = require('fs');
-var Jimp = require('jimp');
-var path = require('path');
+let Jimp = require('jimp');
+let path = require('path');
 
 let win;
 let isToolsDev;
@@ -22,13 +22,13 @@ function createWindow() {
         show: false
     });
 
-    win.loadURL('http://localhost:4200/')
+    win.loadURL('http://localhost:4200/');
 
     win.once('ready-to-show', () => {
         win.show();
-    })
+    });
 
-    if(isToolsDev) {
+    if (isToolsDev) {
         win.webContents.openDevTools();
     }
 
@@ -57,7 +57,7 @@ ipcMain.on('uiUpdateImageInfos', (event, pathFolder) => {
 });
 
 ipcMain.on('launchImgDataAug', (event, message) => {
-    fs.readdir(message['pathFolder'], (err, files) => {
+    fs.readdir(message.pathFolder, (err, files) => {
         files.forEach( (file) => {
             if ( (file.includes('.png'))
                 || (file.includes('.jpg'))
@@ -69,12 +69,12 @@ ipcMain.on('launchImgDataAug', (event, message) => {
 
 
                         for (let currentImageIndex = 0 ; currentImageIndex < message.cloneNumber ; currentImageIndex++) {
-                            let currentImage = img.clone();
+                            const currentImage = img.clone();
 
                             let suffixeNameFile = '';
 
                             /********************   BLUR EFFECT   *************/
-                            if (message.effects.blur.active) {
+                            if (message.effects.blur.active === true) {
                                 const alea = Math.floor(Math.random() * (message.effects.blur.maxValue - message.effects.blur.minValue + 1)) + message.effects.blur.minValue;
 
                                 if (alea !== 0) {
@@ -84,7 +84,7 @@ ipcMain.on('launchImgDataAug', (event, message) => {
                             }
 
                             /********************   FLIP EFFECT   *************/
-                            if (message.effects.flip.active) {
+                            if (message.effects.flip.active === true) {
                                 let v;
                                 let h;
                                 if (message.effects.flip.vertical) {
@@ -101,8 +101,17 @@ ipcMain.on('launchImgDataAug', (event, message) => {
                                 suffixeNameFile += '_flip';
                             }
 
+                            /********************   ROTATE EFFECT   *************/
+                            if (message.effects.rotation.active === true) {
+                                let randomRotateDegree = Math.floor(Math.random() * (message.effects.rotation.maxValue + message.effects.rotation.minValue + 1)) - message.effects.rotation.minValue ;
+                                currentImage.rotate(randomRotateDegree);
+                            }
+
+
                             /********************   RESIZE EFFECT   *************/
-                            if (message.effects.resize) {
+                            if (message.effects.resize === true) {
+                                console.log('BITE');
+                                console.log(message.effects.resize);
                                 if (message.effects.resize.resizeHeigthAuto) {
                                     currentImage.resize(message.effects.resize.width, Jimp.AUTO);
                                 } else if (message.effects.resize.resizeWidthAuto) {
@@ -113,7 +122,7 @@ ipcMain.on('launchImgDataAug', (event, message) => {
                             }
 
                             // BETAAAAAAAAAAAAAAAAAAAAAAA
-                            //currentImage.displace(map, 10);
+                            // currentImage.displace(map, 10);
 
                             ///////////////////////////////
 
@@ -124,11 +133,11 @@ ipcMain.on('launchImgDataAug', (event, message) => {
 
                             suffixeNameFile += '_clone' + '_' + currentImageIndex.toString();
 
-                            let currentNameFile = file.split('.');
+                            const currentNameFile = file.split('.');
                             currentNameFile.pop();
 
 
-                            let savePath = message.pathFolder + '\\' + currentNameFile + suffixeNameFile + '.' + message.saveFormat;
+                            const savePath = message.pathFolder + '\\' + currentNameFile + suffixeNameFile + '.' + message.saveFormat;
 
 
                             currentImage.write(savePath);
@@ -138,17 +147,17 @@ ipcMain.on('launchImgDataAug', (event, message) => {
                     }).catch( (error) => {
                             console.log(error);
                     });
-            };
+            }
         });
     });
 });
 
 
 function trueOrFalseGenerator() {
-    var random = Math.random();
-    if(random<0.5){
+    const random = Math.random();
+    if (random < 0.5) {
         return false;
-    } else{
+    } else {
         return true;
     }
 }

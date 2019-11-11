@@ -52,6 +52,12 @@ export class ImageComponent implements OnInit {
     private resizeHeigthAuto: boolean;
     private resizeWidthAuto: boolean;
 
+    private rotateActive: boolean;
+    private rotationMinValue: number;
+    private rotationMaxValue: number;
+    private rotationStep: number;
+    private rotationMax: number;
+    private rotationMin: number;
 
 
 
@@ -99,6 +105,15 @@ export class ImageComponent implements OnInit {
         this.resizeWidthAuto = false;
         this.resizeHeight = 0;
         this.resizeWidth = 0;
+
+        this.rotateActive = false;
+        this.rotationMinValue = 0;
+        this.rotationMaxValue = 0;
+        this.rotationMax = 360;
+        this.rotationMin = 0;
+        this.rotationStep = 1
+
+
 
 
         this.initChannels();
@@ -158,10 +173,14 @@ export class ImageComponent implements OnInit {
                         height: this.resizeHeight,
                         widthAuto: this.resizeWidthAuto,
                         heightAuto: this.resizeHeigthAuto
+                    },
+                    rotation: {
+                        active: this.rotateActive,
+                        minValue: this.rotationMinValue,
+                        maxValue: this.rotationMaxValue
                     }
                 }
             };
-            console.log(this.gaussianBlurActive)
             this.electronService.ipcRenderer.send('launchImgDataAug', message);
         }
     }

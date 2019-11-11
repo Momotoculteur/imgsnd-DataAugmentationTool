@@ -35,7 +35,39 @@
                     </div>
                 </div>
 
+
+
+
                 <mat-divider></mat-divider>
+
+
+
+
+                <div class="superContenerRotate">
+                    <mat-slide-toggle [(ngModel)]="rotateActive" class="subCategorieTitle">Rotate</mat-slide-toggle>
+                    <div *ngIf="rotateActive" fxLayout="column">
+                        <div>
+                            Rotation minimal
+                            <mat-slider [step]="rotationStep" [max]="rotationMax" [min]="rotationMin" [(ngModel)]="rotationMinValue" [thumbLabel]="true" ></mat-slider>
+                            - {{rotationMinValue}}
+
+                        </div>
+                        <div>
+                            Rotation maximal
+                            <mat-slider [step]="rotationStep" [max]="rotationMax" [min]="rotationMin" [(ngModel)]="rotationMaxValue" [thumbLabel]="true" ></mat-slider>
+                            {{rotationMaxValue}}
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <mat-divider></mat-divider>
+
 
 
                 <div class="superContenerResize">

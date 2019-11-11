@@ -47,54 +47,87 @@
 
 
         <!-----------------------------------------   INFOS ZONE   ------------------------------------------>
-        <div class="infos" fxFlex>
+        <div class="infos" >
 
-            <div fxLayout="column" fxLayoutAlign="end" fxFlex>
 
-                <div fxLayout="row">
-                    <button mat-button (click)="selectFolderPath()" >
+            <div fxLayout="row" fxLayoutAlign="space-between">
+
+
+                <!-----------------   PATH SELECTIONNER --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex>
+                    <button mat-button (click)="selectFolderPath()" fxFlexAlign="center">
                         <i class="material-icons">
                             folder_open
                         </i>
                     </button>
-                    <div class="folderpath" fxLayout="column" fxLayoutAlign="center">
+                    <div fxLayoutAlign="center" class="infosText">
                         {{folderPath}}
                     </div>
                 </div>
 
 
-                <div>
-                    <br/>
-                    Copies par image :
-                    <mat-form-field class="displayCloneNumber">
+                <!-----------------   IMAGE CLONE INFOS --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex >
+                    <div fxFlexAlign="center">
+                        Copies par image :
+                    </div>
+                    <mat-form-field class="displayCloneNumber" fxFlexAlign="center">
                         <input  matInput [(ngModel)]="numberClone" (ngModelChange)="updateNumberImg($event)">
                     </mat-form-field>
-                    <br/>
+                </div>
 
-                    Nb image avant dataaug : {{numberImageBeforeAugmentation}}
-                    Nb total image apres dataaug {{numberImageAfterAugmentation}}
+                <!-----------------   IMAGE BEFORE INFOS --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex >
+                    <div fxLayoutAlign="center">
+                        Image before
+                    </div>
+                    <div fxLayoutAlign="center" class="infosText">
+                        {{numberImageBeforeAugmentation}}
+                    </div>
+                </div>
 
+                <!-----------------   IMAGE AFTER INFOS --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex >
+                    <div fxLayoutAlign="center">
+                        Image after
+                    </div>
+                    <div fxLayoutAlign="center" class="infosText">
+                        {{numberImageAfterAugmentation}}
+                    </div>
+                </div>
 
-                    <mat-form-field>
-                        <mat-select [(value)]="saveFormat">
-                            <mat-option *ngFor="let format of saveFormatList" [value]="format.viewValue">
-                                {{format.viewValue}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <button mat-button (click)="launchDataAug()">
-                        GO
-                    </button>
+                <!-----------------   FORMAT SAUVEGARDE INFOS --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex>
+                    <div fxFlexAlign="center">
+                        Format de sauvegarde
+                    </div>
+                    <div fxFlexAlign="center">
+                        <mat-form-field>
+                            <mat-select [(value)]="saveFormat">
+                                <mat-option *ngFor="let format of saveFormatList" [value]="format.viewValue">
+                                    {{format.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
 
 
 
-            </div>
 
+                <!-----------------   GO INFOS    --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                        <button mat-button (click)="launchDataAug()">
+                            GO
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
         <!-----------------------------------------   END INFOS ZONE   ------------------------------------------>
-
 
 
     </div>

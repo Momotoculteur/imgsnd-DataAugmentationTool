@@ -12,7 +12,7 @@
 
     color: #c8c8c8;
 
-    .material-icons {
+    .material-icons:hover {
         color: #ffd600;
     }
 
@@ -58,15 +58,51 @@
     .infos {
         margin: 10px;
 
+
         .mat-button{
             padding: 0;
             width: 40px;
             min-width: 0;
+            border-radius: 0px;
         }
+
         .folderpath {
             //color: #ffd600;
-            vertical-align: center;
+            //vertical-align: center;
         }
+
+        .mat-form-field {
+            padding: 0;
+            width: 80px;
+        }
+        /*
+        .not-empty-select.mat-selected {
+            color: green !important;
+        }
+
+        /deep/ .mat-select-value-text {
+            color: green !important;
+        }*/
+
+        ::ng-deep .mat-select-value{
+            color: #ffd600;
+            text-align: center;
+        }
+
+        ::ng-deep .mat-input-element {
+            color: #ffd600;
+            text-align: center;
+        }
+
+
+        .infosText {
+            padding-top: 20px;
+            padding-bottom: 27px;
+            color: #ffd600;
+        }
+
+
+
     }
 }
 

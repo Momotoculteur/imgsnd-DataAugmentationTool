@@ -12,7 +12,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$DeeplyLabel-primary: mat-palette($mat-indigo);
+$DeeplyLabel-primary: mat-palette($mat-yellow, A700, A200, A400);
 $DeeplyLabel-accent: mat-palette($mat-yellow, A700, A200, A400);
 
 // The warn palette is optional (defaults to red).

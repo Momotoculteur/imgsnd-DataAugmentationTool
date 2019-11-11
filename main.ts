@@ -67,18 +67,14 @@ ipcMain.on('launchImgDataAug', (event, message) => {
                     .then( img => {
 
 
-                        for(let currentClone = 0 ; currentClone < message.cloneNumber ; currentClone++)
+                        for(let currentImageIndex = 0 ; currentImageIndex < message.cloneNumber ; currentImageIndex++)
                         {
                             var currentImage = img.clone();
 
                             let suffixeNameFile = '';
                             if (message.effects.blur.active) {
-                                //let min = Math.ceil(message.effects.blur.minValue);
-                                //let max = Math.floor(message.effects.blur.maxValue);
                                 let alea = Math.floor(Math.random() * (message.effects.blur.maxValue - message.effects.blur.minValue + 1)) + message.effects.blur.minValue;
-                                console.log("BLUUUUR\n")
-                                console.log(alea)
-                                console.log("\n")
+
                                 if (alea !== 0) {
                                     currentImage.blur(alea);
                                 }
@@ -100,10 +96,21 @@ ipcMain.on('launchImgDataAug', (event, message) => {
                                 suffixeNameFile += '_flip';
                             }
 
-                            suffixeNameFile += '_clone' + '_' + currentClone.toString();
+                            // BETAAAAAAAAAAAAAAAAAAAAAAA
+                            //currentImage.displace(map, 10);
+
+                            ///////////////////////////////
+
+
+
+
+
+
+                            suffixeNameFile += '_clone' + '_' + currentImageIndex.toString();
 
                             let currentNameFile = file.split('.');
                             currentNameFile.pop();
+
 
                             let savePath = message['pathFolder'] + '\\' + currentNameFile + suffixeNameFile + '.' + message.saveFormat;
 

@@ -11,29 +11,62 @@
 
                 <div class="superContenerFlip">
                     <mat-slide-toggle [(ngModel)]="flipActive" class="subCategorieTitle">Symétrie</mat-slide-toggle>
-                        <div class="contenerFlip" *ngIf="flipActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
-                            <mat-slide-toggle [(ngModel)]="flipHorizontal" >Axe horizontal</mat-slide-toggle>
-                            <mat-slide-toggle [(ngModel)]="flipVertical" >Axe vertical</mat-slide-toggle>
-                        </div>
+                    <div class="contenerFlip" *ngIf="flipActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
+                        <mat-slide-toggle [(ngModel)]="flipHorizontal" >Axe horizontal</mat-slide-toggle>
+                        <mat-slide-toggle [(ngModel)]="flipVertical" >Axe vertical</mat-slide-toggle>
+                    </div>
                 </div>
 
                 <mat-divider></mat-divider>
 
                 <div class="superContenerBlur">
                     <mat-slide-toggle [(ngModel)]="gaussianBlurActive" class="subCategorieTitle">Flou Gaussien</mat-slide-toggle>
-                        <div class="contenerBlur" *ngIf="gaussianBlurActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
-                            <div>
-                                Minimal
-                                <mat-slider [(ngModel)]="gaussianBlurValueMin" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
-                                {{gaussianBlurValueMin}}
-                            </div>
-                            <div>
-                                Maximal
-                                <mat-slider [(ngModel)]="gaussianBlurValueMax" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
-                                {{gaussianBlurValueMax}}
-                            </div>
-
+                    <div class="contenerBlur" *ngIf="gaussianBlurActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
+                        <div>
+                            Minimal
+                            <mat-slider [(ngModel)]="gaussianBlurValueMin" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
+                            {{gaussianBlurValueMin}}
                         </div>
+                        <div>
+                            Maximal
+                            <mat-slider [(ngModel)]="gaussianBlurValueMax" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
+                            {{gaussianBlurValueMax}}
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+
+                <div class="superContenerResize">
+                    <mat-slide-toggle [(ngModel)]="resizeActive" class="subCategorieTitle">Resize</mat-slide-toggle>
+                    <div class="contenerResize" *ngIf="resizeActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
+                        <div fxLayout="column" >
+                            <div fxLayout="row">
+                                <div fxLayout="start" class="label">
+                                    Width
+                                </div>
+                                <mat-form-field fxLayout="end">
+                                    <input [disabled]="widthInputState" matInput [(ngModel)]="resizeWidth" [style.color]="resizeLabelColorWidth">
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row">
+                                <div fxLayout="start" class="label">
+                                    Height
+                                </div>
+                                <mat-form-field fxLayout="end">
+                                    <input  [disabled]="heigthInputState" matInput [(ngModel)]="resizeHeight" [style.color]="resizeLabelColorHeight">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxLayout="column" >
+                            <mat-slide-toggle [(ngModel)]="resizeWidthAuto" (change)="switchWidthState()" >Auto width</mat-slide-toggle>
+                            <mat-slide-toggle [(ngModel)]="resizeHeigthAuto" (change)="switchHeightState()" >Auto height</mat-slide-toggle>
+                        </div>
+
+
+                    </div>
+
                 </div>
 
 
@@ -47,54 +80,85 @@
 
 
         <!-----------------------------------------   INFOS ZONE   ------------------------------------------>
-        <div class="infos" fxFlex>
+        <div class="infos" >
 
-            <div fxLayout="column" fxLayoutAlign="end" fxFlex>
 
-                <div fxLayout="row">
-                    <button mat-button (click)="selectFolderPath()" >
+            <div fxLayout="row" fxLayoutAlign="space-between">
+
+
+                <!-----------------   PATH SELECTIONNER --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex>
+                    <button mat-button (click)="selectFolderPath()" fxFlexAlign="center" fxFlex>
                         <i class="material-icons">
                             folder_open
                         </i>
                     </button>
-                    <div class="folderpath" fxLayout="column" fxLayoutAlign="center">
+                    <div fxLayoutAlign="center" class="infosText" fxFlex>
                         {{folderPath}}
                     </div>
                 </div>
 
 
-                <div>
-                    <br/>
-                    Copies par image :
-                    <mat-form-field class="displayCloneNumber">
+                <!-----------------   IMAGE CLONE INFOS --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex >
+                    <div fxFlexAlign="center">
+                        Copies par image :
+                    </div>
+                    <mat-form-field class="displayCloneNumber" fxFlexAlign="center">
                         <input  matInput [(ngModel)]="numberClone" (ngModelChange)="updateNumberImg($event)">
                     </mat-form-field>
-                    <br/>
+                </div>
 
-                    Nb image avant dataaug : {{numberImageBeforeAugmentation}}
-                    Nb total image apres dataaug {{numberImageAfterAugmentation}}
+                <!-----------------   IMAGE BEFORE INFOS --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex >
+                    <div fxLayoutAlign="center">
+                        Image before
+                    </div>
+                    <div fxLayoutAlign="center" class="infosText">
+                        {{numberImageBeforeAugmentation}}
+                    </div>
+                </div>
+
+                <!-----------------   IMAGE AFTER INFOS --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex >
+                    <div fxLayoutAlign="center">
+                        Image after
+                    </div>
+                    <div fxLayoutAlign="center" class="infosText">
+                        {{numberImageAfterAugmentation}}
+                    </div>
+                </div>
+
+                <!-----------------   FORMAT SAUVEGARDE INFOS --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex>
+                    <div fxFlexAlign="center">
+                        Format de sauvegarde
+                    </div>
+                    <div fxFlexAlign="center">
+                        <mat-form-field>
+                            <mat-select [(value)]="saveFormat">
+                                <mat-option *ngFor="let format of saveFormatList" [value]="format.viewValue">
+                                    {{format.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
 
 
-                    <mat-form-field>
-                        <mat-select [(value)]="saveFormat">
-                            <mat-option *ngFor="let format of saveFormatList" [value]="format.viewValue">
-                                {{format.viewValue}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
 
-                    <button mat-button (click)="launchDataAug()">
+
+                <!-----------------   GO INFOS    --------------->
+                <div fxLayout="column" fxFlexAlign="center" fxFlex>
+                    <button mat-button (click)="launchDataAug()" class="goButton" fxFlexAlign="center">
                         GO
                     </button>
                 </div>
 
 
-
             </div>
-
         </div>
         <!-----------------------------------------   END INFOS ZONE   ------------------------------------------>
-
 
 
     </div>

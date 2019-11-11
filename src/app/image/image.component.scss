@@ -12,7 +12,7 @@
 
     color: #c8c8c8;
 
-    .material-icons {
+    .material-icons:hover {
         color: #ffd600;
     }
 
@@ -43,6 +43,35 @@
             //margin-bottom: 5px;
         }
 
+        .contenerResize {
+            margin-left: 30px;
+            margin-top: 20px;
+            margin-right: 30px;
+            margin-bottom: 10px;
+
+            ::ng-deep .mat-form-field-wrapper .mat-form-field-infix{
+                padding: 0;
+                width: 50px;
+                border: 0;
+            }
+            .mat-form-field {
+                text-align: right;
+            }
+
+            .label {
+                margin-right: 10px;
+            }
+
+            ::ng-deep .mat-input-element {
+                color: #ffd600;
+                text-align: center;
+            }
+
+            .mat-slide-toggle {
+                padding-bottom: 10px;
+            }
+        }
+
 
 
         .subCategorieTitle {
@@ -58,15 +87,63 @@
     .infos {
         margin: 10px;
 
+
         .mat-button{
             padding: 0;
             width: 40px;
             min-width: 0;
+            border-radius: 0px;
         }
+
         .folderpath {
             //color: #ffd600;
-            vertical-align: center;
+            //vertical-align: center;
         }
+
+        .mat-form-field {
+            padding: 0;
+            width: 80px;
+        }
+        /*
+        .not-empty-select.mat-selected {
+            color: green !important;
+        }
+
+        /deep/ .mat-select-value-text {
+            color: green !important;
+        }*/
+
+        ::ng-deep .mat-select-value{
+            color: #ffd600;
+            text-align: center;
+        }
+
+        ::ng-deep .mat-input-element {
+            color: #ffd600;
+            text-align: center;
+        }
+
+
+        .infosText {
+            padding-top: 20px;
+            padding-bottom: 27px;
+            color: #ffd600;
+            //white-space: pre-wrap !important;
+        }
+
+        .goButton {
+            //width: 100px;
+            //font-size: 20px;
+        }
+
+        .goButton:hover {
+            color: #ffd600;
+        }
+
+
+
+
+
     }
 }
 

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ElectronService} from 'ngx-electron';
 import {SaveFormatSelect} from '../../shared/interface/SaveFormatSelect';
 import {SaveFormat} from '../../shared/enum/SaveFormat';
+import {ThemeColor} from '../../shared/enum/ThemeColor';
 
 @Component({
   selector: 'app-image',
@@ -23,6 +24,13 @@ export class ImageComponent implements OnInit {
     private saveFormatList: SaveFormatSelect[];
     private saveFormat: SaveFormat;
 
+    private heigthInputState: boolean;
+    private widthInputState: boolean;
+
+    /********** CSS BINDING ***********/
+    private resizeLabelColorHeight: ThemeColor;
+    private resizeLabelColorWidth: ThemeColor;
+
     /***********   EFFECTS   **********/
     private gaussianBlurActive: boolean;
     private gaussianBlurValueMin: number;
@@ -35,11 +43,19 @@ export class ImageComponent implements OnInit {
     private flipHorizontal: boolean;
     private flipVertical: boolean;
 
+    private resizeActive: boolean;
+    private resizeHeight: number;
+    private resizeWidth: number;
+    private resizeHeigthAuto: boolean;
+    private resizeWidthAuto: boolean;
+
+
+
 
     constructor() {
 
 
-        this.folderPath = "Aucun dossier sélectionné";
+        this.folderPath = 'Aucun dossier sélectionné';
         this.numberImageBeforeAugmentation = 0;
         this.numberClone = 1;
         this.saveFormatList = [
@@ -51,6 +67,11 @@ export class ImageComponent implements OnInit {
         ];
         this.saveFormat = SaveFormat.PNG;
 
+        this.heigthInputState = false;
+        this.widthInputState = false;
+
+        this.resizeLabelColorHeight = ThemeColor.YELLOW;
+        this.resizeLabelColorWidth = ThemeColor.YELLOW;
 
         this.electronService = new ElectronService();
         this.numberImageAfterAugmentation = this.numberClone * this.numberImageBeforeAugmentation;
@@ -67,6 +88,13 @@ export class ImageComponent implements OnInit {
         this.flipHorizontal = false;
         this.flipVertical = false;
 
+        this.resizeActive = false;
+        this.resizeHeigthAuto = false;
+        this.resizeWidthAuto = false;
+        this.resizeHeight = 0;
+        this.resizeWidth = 0;
+
+
         this.initChannels();
     }
 
@@ -81,7 +109,7 @@ export class ImageComponent implements OnInit {
                 this.folderPath = path.filePaths[0];
                 this.electronService.ipcRenderer.send('uiUpdateImageInfos', this.folderPath);
             } else {
-                console.log("aucun fichier de choisit");
+                console.log('aucun fichier de choisit');
             }
         }).catch( error => {
             console.log(error);
@@ -100,25 +128,36 @@ export class ImageComponent implements OnInit {
     }
 
     private launchDataAug() {
-        let message = {
-            'pathFolder': this.folderPath,
-            'cloneNumber': this.numberClone,
-            'saveFormat': this.saveFormat,
-            'effects' : {
-                'blur': {
-                    'active': this.gaussianBlurActive,
-                    'minValue': this.gaussianBlurValueMin,
-                    'maxValue': this.gaussianBlurValueMax
-                },
-                'flip': {
-                    'active': this.flipActive,
-                    'horizontal': this.flipHorizontal,
-                    'vertical': this.flipVertical
+        if (this.folderPath === 'Aucun dossier sélectionné') {
+
+        } else {
+            const message = {
+                pathFolder: this.folderPath,
+                cloneNumber: this.numberClone,
+                saveFormat: this.saveFormat,
+                effects : {
+                    blur: {
+                        active: this.gaussianBlurActive,
+                        minValue: this.gaussianBlurValueMin,
+                        maxValue: this.gaussianBlurValueMax
+                    },
+                    flip: {
+                        active: this.flipActive,
+                        horizontal: this.flipHorizontal,
+                        vertical: this.flipVertical
+                    },
+                    resize: {
+                        active: this.resizeActive,
+                        width: this.resizeWidth,
+                        height: this.resizeHeight,
+                        widthAuto: this.resizeWidthAuto,
+                        heightAuto: this.resizeHeigthAuto
+                    }
                 }
-            }
+            };
+            console.log(this.gaussianBlurActive)
+            this.electronService.ipcRenderer.send('launchImgDataAug', message);
         }
-        console.log(this.gaussianBlurActive)
-        this.electronService.ipcRenderer.send('launchImgDataAug', message);
     }
 
     private initChannels() {
@@ -127,6 +166,24 @@ export class ImageComponent implements OnInit {
             this.numberImageBeforeAugmentation = numberFiles;
             this.updateNumberImgAfterAug();
         });
+    }
+
+
+    private switchHeightState() {
+       this.heigthInputState = !this.heigthInputState;
+       if (this.heigthInputState) {
+           this.resizeLabelColorHeight = ThemeColor.BLACK;
+       } else {
+           this.resizeLabelColorHeight = ThemeColor.YELLOW;
+       }
+    }
+    private switchWidthState() {
+        this.widthInputState = !this.widthInputState;
+        if (this.widthInputState) {
+            this.resizeLabelColorWidth = ThemeColor.BLACK;
+        } else {
+            this.resizeLabelColorWidth = ThemeColor.YELLOW;
+        }
     }
 
 }

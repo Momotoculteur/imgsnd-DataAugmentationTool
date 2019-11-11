@@ -11,29 +11,62 @@
 
                 <div class="superContenerFlip">
                     <mat-slide-toggle [(ngModel)]="flipActive" class="subCategorieTitle">Symétrie</mat-slide-toggle>
-                        <div class="contenerFlip" *ngIf="flipActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
-                            <mat-slide-toggle [(ngModel)]="flipHorizontal" >Axe horizontal</mat-slide-toggle>
-                            <mat-slide-toggle [(ngModel)]="flipVertical" >Axe vertical</mat-slide-toggle>
-                        </div>
+                    <div class="contenerFlip" *ngIf="flipActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
+                        <mat-slide-toggle [(ngModel)]="flipHorizontal" >Axe horizontal</mat-slide-toggle>
+                        <mat-slide-toggle [(ngModel)]="flipVertical" >Axe vertical</mat-slide-toggle>
+                    </div>
                 </div>
 
                 <mat-divider></mat-divider>
 
                 <div class="superContenerBlur">
                     <mat-slide-toggle [(ngModel)]="gaussianBlurActive" class="subCategorieTitle">Flou Gaussien</mat-slide-toggle>
-                        <div class="contenerBlur" *ngIf="gaussianBlurActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
-                            <div>
-                                Minimal
-                                <mat-slider [(ngModel)]="gaussianBlurValueMin" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
-                                {{gaussianBlurValueMin}}
-                            </div>
-                            <div>
-                                Maximal
-                                <mat-slider [(ngModel)]="gaussianBlurValueMax" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
-                                {{gaussianBlurValueMax}}
-                            </div>
-
+                    <div class="contenerBlur" *ngIf="gaussianBlurActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
+                        <div>
+                            Minimal
+                            <mat-slider [(ngModel)]="gaussianBlurValueMin" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
+                            {{gaussianBlurValueMin}}
                         </div>
+                        <div>
+                            Maximal
+                            <mat-slider [(ngModel)]="gaussianBlurValueMax" [min]="gaussianBlurMin" [max]="gaussianBlurMax" [step]="gaussianBlurStep" [thumbLabel]="true" ></mat-slider>
+                            {{gaussianBlurValueMax}}
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+
+                <div class="superContenerResize">
+                    <mat-slide-toggle [(ngModel)]="resizeActive" class="subCategorieTitle">Resize</mat-slide-toggle>
+                    <div class="contenerResize" *ngIf="resizeActive" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
+                        <div fxLayout="column" >
+                            <div fxLayout="row">
+                                <div fxLayout="start" class="label">
+                                    Width
+                                </div>
+                                <mat-form-field fxLayout="end">
+                                    <input [disabled]="widthInputState" matInput [(ngModel)]="resizeWidth" [style.color]="resizeLabelColorWidth">
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row">
+                                <div fxLayout="start" class="label">
+                                    Height
+                                </div>
+                                <mat-form-field fxLayout="end">
+                                    <input  [disabled]="heigthInputState" matInput [(ngModel)]="resizeHeight" [style.color]="resizeLabelColorHeight">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxLayout="column" >
+                            <mat-slide-toggle [(ngModel)]="resizeWidthAuto" (change)="switchWidthState()" >Auto width</mat-slide-toggle>
+                            <mat-slide-toggle [(ngModel)]="resizeHeigthAuto" (change)="switchHeightState()" >Auto height</mat-slide-toggle>
+                        </div>
+
+
+                    </div>
+
                 </div>
 
 
